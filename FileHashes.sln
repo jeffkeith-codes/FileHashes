@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sha256sum", "sha256hash\sha256sum.csproj", "{51B7C644-F518-4F4F-A7C0-E0BAC3EC9D7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B7C644-F518-4F4F-A7C0-E0BAC3EC9D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B7C644-F518-4F4F-A7C0-E0BAC3EC9D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B7C644-F518-4F4F-A7C0-E0BAC3EC9D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B7C644-F518-4F4F-A7C0-E0BAC3EC9D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {975238C3-38C0-4CBE-87B1-E00E367DFEDB}
+	EndGlobalSection
+EndGlobal
