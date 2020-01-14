@@ -24,7 +24,7 @@ namespace sha256sum
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private string fileName = ""; 
+        private string fileName; 
         public string FileName 
         { 
             get { return fileName; }
@@ -33,67 +33,57 @@ namespace sha256sum
                 fileName = value;
                 if (FileName != null)
                 {
-                    OnPropertyChanged("FileName");
-                    OnPropertyChanged("SHA512Hash");
-                    OnPropertyChanged("SHA384Hash");
-                    OnPropertyChanged("SHA256Hash");
+                    OnPropertyChanged(nameof(FileName));
+                    OnPropertyChanged(nameof(SHA512Hash));
+                    OnPropertyChanged(nameof(SHA384Hash));
+                    OnPropertyChanged(nameof(SHA256Hash));
                 }
             }
         }
+        public string SHA512Hash { get => Hasher("SHA512"); }
+        public string SHA384Hash { get => Hasher("SHA384"); }
+        public string SHA256Hash { get => Hasher("SHA256"); }
 
-        public string SHA512Hash
+        private string Hasher(string whichHash)
         {
-            get
+            if (fileName == null)
+                return "Choose a file";
+
+            using ( FileStream fileToHash = new FileStream(FileName, FileMode.Open))
             {
-                using (SHA512Managed sha512 = new SHA512Managed())
-                {
-                    using (FileStream fileToHash = new FileStream(FileName, FileMode.Open))
+                string outputHash = ""; 
+                //try
+                //{
+                    SHA512Managed sha512 = new SHA512Managed();
+                    SHA384Managed sha384 = new SHA384Managed();
+                    SHA256Managed sha256 = new SHA256Managed();
+                    switch (whichHash)
                     {
-                        byte[] hashValue = sha512.ComputeHash(fileToHash);
-                        return HexStringOfByteArray(hashValue);
+                        case "SHA512":
+                            outputHash = HexStringOfByteArray(sha512.ComputeHash(fileToHash));
+                            break; 
+                        case "SHA384":
+                            outputHash = HexStringOfByteArray(sha384.ComputeHash(fileToHash));
+                            break; 
+                        case "SHA256":
+                            outputHash = HexStringOfByteArray(sha256.ComputeHash(fileToHash));
+                            break; 
                     }
-                }
+                //}
+                //finally
+                //{
+                //    GC.Collect();
+                //    GC.WaitForPendingFinalizers();
+                //}
+                return outputHash;
             }
         }
 
-        public string SHA384Hash
-        {
-            get
-            {
-                using (SHA384Managed sha384 = new SHA384Managed())
-                {
-                    using (FileStream fileToHash = new FileStream(FileName, FileMode.Open))
-                    {
-                        byte[] hashValue = sha384.ComputeHash(fileToHash);
-                        return HexStringOfByteArray(hashValue);
-                    }
-                }
-            }
-        }
-
-        public string SHA256Hash
-        {
-            get
-            {
-                using (SHA256Managed sha256 = new SHA256Managed())
-                {
-                    using (FileStream fileToHash = new FileStream(FileName, FileMode.Open))
-                    {
-                        byte[] hashValue = sha256.ComputeHash(fileToHash);
-                        return HexStringOfByteArray(hashValue);
-                    }
-                }
-            }
-        }
-
-        private string HexStringOfByteArray(byte[] byteArray)
+        private static string HexStringOfByteArray(byte[] byteArray)
         {
             StringBuilder stringBuilder = new StringBuilder(); 
             for (int i = 0; i< byteArray.Length; i++)
-            {
-                // stringBuilder.Append(String.Format("X2", byteArray[i]));
                 stringBuilder.Append(byteArray[i].ToString("X2"));
-            }
             return stringBuilder.ToString(); 
         }
 
