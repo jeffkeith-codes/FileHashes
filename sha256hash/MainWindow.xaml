@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:sha256hash"
         mc:Ignorable="d"
         x:Name="window"
-        Title="MainWindow" Height="400" Width="500">
+        Title="MainWindow" Height="400" Width="800">
     
     <Window.Resources>
         <Style x:Key="valueField" TargetType="{x:Type Label}">
@@ -21,17 +21,17 @@
             <Label Content="Filename:" HorizontalAlignment="Left" />
             <Label Content="{Binding FileName, ElementName=window}" Width="388" />
         </StackPanel>
-
-        <!-- 
+        
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="SHA512 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA512Hash, ElementName=window}" HorizontalAlignment="Right" />
         </StackPanel>
+
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="SHA384 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA384Hash, ElementName=window}" HorizontalAlignment="Right" />
         </StackPanel>
-        -->
+        
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="SHA256 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA256Hash, ElementName=window}" HorizontalAlignment="Right" />

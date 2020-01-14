@@ -31,12 +31,13 @@ namespace sha256sum
             set
             {
                 fileName = value;
-                OnPropertyChanged("FileName");
-                /* 
-                OnPropertyChanged("SHA512Hash");
-                OnPropertyChanged("SHA384Hash");
-                */
-                OnPropertyChanged("SHA256Hash");
+                if (FileName != null)
+                {
+                    OnPropertyChanged("FileName");
+                    OnPropertyChanged("SHA512Hash");
+                    OnPropertyChanged("SHA384Hash");
+                    OnPropertyChanged("SHA256Hash");
+                }
             }
         }
 
