@@ -34,14 +34,14 @@ namespace sha256sum
                 if (FileName != null)
                 {
                     OnPropertyChanged(nameof(FileName));
-                    OnPropertyChanged(nameof(SHA512Hash));
-                    OnPropertyChanged(nameof(SHA384Hash));
+                    //OnPropertyChanged(nameof(SHA512Hash));
+                    //OnPropertyChanged(nameof(SHA384Hash));
                     OnPropertyChanged(nameof(SHA256Hash));
                 }
             }
         }
-        public string SHA512Hash { get => Hasher("SHA512"); }
-        public string SHA384Hash { get => Hasher("SHA384"); }
+        // public string SHA512Hash { get => Hasher("SHA512"); }
+        // public string SHA384Hash { get => Hasher("SHA384"); }
         public string SHA256Hash { get => Hasher("SHA256"); }
 
         private string Hasher(string whichHash)
@@ -52,29 +52,35 @@ namespace sha256sum
             using ( FileStream fileToHash = new FileStream(FileName, FileMode.Open))
             {
                 string outputHash = ""; 
-                //try
-                //{
-                    SHA512Managed sha512 = new SHA512Managed();
-                    SHA384Managed sha384 = new SHA384Managed();
-                    SHA256Managed sha256 = new SHA256Managed();
+                try
+                {
+                    
                     switch (whichHash)
                     {
+                        /*
                         case "SHA512":
+                            SHA512Managed sha512 = new SHA512Managed();
                             outputHash = HexStringOfByteArray(sha512.ComputeHash(fileToHash));
+                            sha512.Dispose(); 
                             break; 
                         case "SHA384":
+                            SHA384Managed sha384 = new SHA384Managed();
                             outputHash = HexStringOfByteArray(sha384.ComputeHash(fileToHash));
+                            sha384.Dispose();
                             break; 
+                        */ 
                         case "SHA256":
+                            SHA256Managed sha256 = new SHA256Managed();
                             outputHash = HexStringOfByteArray(sha256.ComputeHash(fileToHash));
+                            sha256.Dispose(); 
                             break; 
                     }
-                //}
-                //finally
-                //{
-                //    GC.Collect();
-                //    GC.WaitForPendingFinalizers();
-                //}
+                }
+                finally
+                {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
                 return outputHash;
             }
         }

@@ -19,9 +19,9 @@
     
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="Filename:" HorizontalAlignment="Left" />
-            <Label Content="{Binding FileName, ElementName=window}" Width="388" />
+            <Label Content="{Binding FileName, ElementName=window}" Width="900" />
         </StackPanel>
-        
+        <!-- 
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="SHA512 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA512Hash, ElementName=window}" HorizontalAlignment="Right" />
@@ -31,7 +31,7 @@
             <Label Content="SHA384 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA384Hash, ElementName=window}" HorizontalAlignment="Right" />
         </StackPanel>
-        
+        -->
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Content="SHA256 Hash:" HorizontalAlignment="Left" />
             <Label Content="{Binding SHA256Hash, ElementName=window}" HorizontalAlignment="Right" />
